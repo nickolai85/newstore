@@ -1,0 +1,14 @@
+{
+    "name": "sequoia/mm",
+    "description": "suvrey",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+    	"psr-4" :{
+    		"liw\\":""
+    	}
+
+    }
+}
