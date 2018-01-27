@@ -17,10 +17,16 @@ if(! isset($_SESSION['cart'])){
 //Conecting Controller
 	require_once '../library/Loads.php';
 //echo $actionName;
+//If Session has user data, send data to template
+	if (isset($_SESSION['user'])) {
+
+		$smarty->assign('userData', $_SESSION['user']);
+
+	}
 
 //Define template variable of number of items in the cart
 	$smarty->assign('cartCntItems',count($_SESSION['cart']));
-
+	
 //loading page
 
 	Loads::loadPage($smarty, $controllerName, $actionName);

@@ -41,4 +41,12 @@ class Loads {
 	{
 		$smarty->display($templateName . TemplatePostfix);
 	}
+
+		public static function redirect($url)
+	{
+		
+		return	header("Location:".$url , TRUE, 302);
+		exit;
+
+	}
 }

@@ -108,6 +108,7 @@ function registerNewUser(){
             if(data['success']){
                 
                 $('#demo').html('User was successefuly created');
+                $('#loginBox').hide();
                 $('#registerBox').hide();
                 $('#userBox').show();
                 $('#userLink').attr('href','/user/');
@@ -115,13 +116,13 @@ function registerNewUser(){
             }else{
 
 
-                  var myObj, i, x = "";
-                  myObj = data;
+                  var rs, i, text = "";
+                  rs = data;
 
-                  for (i = 0; i < myObj.message.length; i++) {
-                      x += myObj.message[i] + "<br>";
+                  for (i = 0; i < rs.message.length; i++) {
+                      text += rs.message[i] + "<br>";
                   }
-                  $('#demo').html(x);
+                  $('#registerResult').html(text);
 
 
             }
@@ -186,7 +187,7 @@ function login(){
                   rs = data;
 
                   for (i = 0; i < rs.message.length; i++) {
-                      text += myObj.message[i] + "<br>";
+                      text += rs.message[i] + "<br>";
                   }
                   $('#registerResult').html(text);
 

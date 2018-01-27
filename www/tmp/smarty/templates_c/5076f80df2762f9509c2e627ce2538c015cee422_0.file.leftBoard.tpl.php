@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-01-27 16:43:29
+/* Smarty version 3.1.29, created on 2018-01-27 19:51:10
   from "C:\OpenServer\domains\newstore.loc\views\default\leftBoard.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a6c82014d3012_96148909',
+  'unifunc' => 'content_5a6cadfe234ad8_71439384',
   'file_dependency' => 
   array (
     '5076f80df2762f9509c2e627ce2538c015cee422' => 
     array (
       0 => 'C:\\OpenServer\\domains\\newstore.loc\\views\\default\\leftBoard.tpl',
-      1 => 1517060603,
+      1 => 1517071867,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a6c82014d3012_96148909 ($_smarty_tpl) {
+function content_5a6cadfe234ad8_71439384 ($_smarty_tpl) {
 ?>
 
         <div id="leftBoard">
@@ -76,6 +76,14 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
 }
 ?>
                 </div>
+
+                <?php if (isset($_smarty_tpl->tpl_vars['userData']->value)) {?>
+                <div id="userBox" class="">
+                        <a href="/user/" id="userLink"><?php echo $_smarty_tpl->tpl_vars['userData']->value['name'];?>
+</a><br />
+                        <a href="#" onClick="logout()">Logout</a><br />
+                </div>
+                <?php } else { ?>
                 
                 <div id="userBox" class="hideme">
                         <a href="#" id="userLink"></a><br />
@@ -108,6 +116,7 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
                                 </div>
                         </form>
                 </div>
+                <?php }?>
                                 
                 <div class="menuCaption">Cart</div>
                                 <a href="/cart/index/" title="Go to cart">In the cart</a>

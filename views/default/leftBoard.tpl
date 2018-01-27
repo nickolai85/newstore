@@ -15,6 +15,13 @@
                             {/if}
                     {/foreach}
                 </div>
+
+                {if isset($userData)}
+                <div id="userBox" class="">
+                        <a href="/user/" id="userLink">{$userData['name']}</a><br />
+                        <a href="#" onClick="logout()">Logout</a><br />
+                </div>
+                {else}
                 
                 <div id="userBox" class="hideme">
                         <a href="#" id="userLink"></a><br />
@@ -47,6 +54,7 @@
                                 </div>
                         </form>
                 </div>
+                {/if}
                                 
                 <div class="menuCaption">Cart</div>
                                 <a href="/cart/index/" title="Go to cart">In the cart</a>

@@ -1,4 +1,6 @@
 <?php
+use liw\app\models\Categories as Categories;
+use liw\app\models\Products as Products; 
 use liw\app\models\Users as Users;
 use liw\app\middleware\UserMiddleware as UserMiddleware;
 use liw\library\DB as DB;
@@ -16,6 +18,42 @@ use liw\library\DB as DB;
 class UserController 
 {
   
+
+    public function indexAction($smarty)
+    {
+
+
+
+/*      if (!isset($_SESSION['user']) {
+
+                  Loads::redirect('/'); 
+
+              }*/
+
+        $rsCategories = Categories::categoriesWithChildren();
+        $rsProducts =Products::get(['LIMIT'=>10,'ASC'=>'id']);
+  
+        $smarty->assign('pageTitle', 'User page');
+        $smarty->assign('rsCategories', $rsCategories);
+        $smarty->assign('rsProducts', $rsProducts);
+        
+
+        Loads::loadTemplate($smarty, 'header'); 
+        Loads::loadTemplate($smarty, 'user/index'); 
+        Loads::loadTemplate($smarty, 'footer');
+    }
+
+
+    public function updateAction()
+    {
+      # code...
+    }
+
+
+
+
+
+
 
       public function registerAction($value='')
       {
@@ -100,7 +138,7 @@ class UserController
               $resData['userName']=$userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
               $resData['userEmail'] = $email;
                
-              $_SESSION['user'] = $userData;
+              $_SESSION['user'] = $userData[0];
               $_SESSION['userName']= $userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
               $_SESSION['userId']=$userData[0]['id'];
               
@@ -128,6 +166,13 @@ class UserController
         
 
       }
+
+
+
+
+
+
+
 
 
 
