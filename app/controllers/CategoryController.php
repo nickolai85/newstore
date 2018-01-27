@@ -36,7 +36,8 @@ class CategoryController{
 
         $rsProducts =Products::get(['where'=>['category_id'=>$catId]]);   
 
-        $rsCategories =Categories::get(['where'=>['parent_id'=>0]]);
+        $rsCategories = Categories::categoriesWithChildren();
+
         
         
        

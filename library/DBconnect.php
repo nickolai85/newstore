@@ -160,7 +160,7 @@ namespace liw\library;
 
             }
 
-          
+          //echo $sql;
 
             return $this->selectDb($sql);
            

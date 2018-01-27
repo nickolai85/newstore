@@ -23,13 +23,39 @@ class Categories
 {
     public static function get($statements='')
     {
-/*        $sql="SELECT id, parent_id, name FROM categories WHERE parent_id='0'";
-        return $sql;
-*/
+
 
         return DB::getBy('categories',$statements);
     }
 
+    public function categoriesWithChildren($statements='')
+    {
+    		$categories=DB::getBy('categories', ['where'=>['parent_id'=>'0']]);
+    		
+    		$rs = array();
+
+    		for ($i=0; $i <count($categories); $i++) {
+
+    			
+
+    			$rs[]=$categories[$i];
+				$childs=DB::getBy('categories', ['where'=>['parent_id'=>$categories[$i]['id']]]);		
+
+				if ($childs) {
+				    				# code...
+				    			$rs[$i]['children']=$childs;
+				    			}    			
+
+
+
+
+
+
+    			}	
+   
+
+    			return $rs;
+    }
 
 
 

@@ -7,8 +7,7 @@ class IndexController{
 
 	public function indexAction($smarty)
 	{
-
-		$rsCategories = Categories::get(['where'=>['parent_id'=>0]]);
+		$rsCategories = Categories::categoriesWithChildren();
         $rsProducts =Products::get(['LIMIT'=>10,'ASC'=>'id']);
   
         $smarty->assign('pageTitle', 'Main page');

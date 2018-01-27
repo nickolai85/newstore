@@ -79,7 +79,8 @@ class CartController
       {
             $itemIds = array();
             $itemIds = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
- 
+            $rsCategories = Categories::categoriesWithChildren();
+
 
              $rsProducts = Products::get(['whereIn'=>['id'=>$itemIds]]);
 

@@ -16,7 +16,8 @@ class ProductController{
 
         $id = isset($_GET['id'])? $_GET['id'] : null;
         if ($id == null) exit ();
-        $rsCategories = Categories::get(['where'=>['parent_id'=>0]]);
+        $rsCategories = Categories::categoriesWithChildren();
+
         $rsProducts =Products::get(['where'=>['id'=>$id]]);
         
         $smarty->assign('itemInCart', 0);
