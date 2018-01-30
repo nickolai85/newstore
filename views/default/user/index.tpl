@@ -1,6 +1,8 @@
 {*User template*}
 <h1>User registration data</h1>
 
+<div id="updateUserBox">
+<p id="userRS"></p>
 <table border="0">
 	<tr>
 		<td>
@@ -59,7 +61,6 @@
 		</td>
 		<td>
 			<input type="password" id="cuPwd"  value=""/>
-
 		</td>
 	</tr> 
 	<tr>
@@ -72,3 +73,4 @@
 		</td>
 	</tr> 
 </table>
+</div>

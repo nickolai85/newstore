@@ -17,7 +17,7 @@ namespace liw\library;
         public   function __construct()
 
         {
-                   $this->dbCon = mysqli_connect($this->server, $this->user, $this->passwd, $this->db_name);
+                        $this->dbCon = mysqli_connect($this->server, $this->user, $this->passwd, $this->db_name);
                         if(!$this->dbCon){
                         echo' Error connection to Database '.mysqli_connect_error().' Error code:'.mysqli_connect_errno();
                         exit;
@@ -135,32 +135,31 @@ namespace liw\library;
             $sql.=" WHERE ".implode(" AND ", $wherSql );
             }
 
-            if (isset($atribute['ASC'])) {
+            if (isset($atribute['asc'])) {
 
 
-                $sql.=" ORDER BY ".$atribute['ASC']." ASC";
+                $sql.=" ORDER BY ".$atribute['asc']." ASC";
             }
 
-            if (isset($atribute['DESC'])) {
+            if (isset($atribute['desc'])) {
 
 
-                $sql.=" ORDER BY ".$atribute['DESC']." DESC";
+                $sql.=" ORDER BY ".$atribute['desc']." DESC";
             }
 
-            if (isset($atribute['GROUP'])) {
+            if (isset($atribute['group'])) {
 
-                $sql.=" GROUP BY ".$atribute['GROUP'];
-
-            }
-
-
-            if (isset($atribute['LIMIT'])) {
-
-                $sql.=" LIMIT ".$atribute['LIMIT'];
+                $sql.=" GROUP BY ".$atribute['group'];
 
             }
 
-          //echo $sql;
+
+            if (isset($atribute['limit'])) {
+
+                $sql.=" LIMIT ".$atribute['limit'];
+
+            }
+
 
             return $this->selectDb($sql);
            
@@ -173,6 +172,8 @@ namespace liw\library;
         {
             $sql1="SHOW COLUMNS FROM $table ";
             return $this->SELECT($sql1);
+
+
         }
 
 
@@ -206,11 +207,8 @@ namespace liw\library;
                                 $postValue[$value]='created_at=now()';
                                 
                             }
-/*                            elseif ($value=='password') {
-                                $postValue[$value]="password='".md5($request['password'])."'";
-                              
-                            }
-*/
+
+
                         else{
                             if($request[$value]!=''){
                             $postValue[$value]=$value."='". $this->filter_input($request[$value]) ."'";
@@ -223,10 +221,9 @@ namespace liw\library;
 
                         $sql=" INSERT INTO $table SET ".implode(", ", $postValue );
                       
-                       if ($this->execute($sql)) {
-                            return $rs['error']=null;
-                        } 
-                        return $rs['error']=1;
+               
+                            return  $this->execute($sql);
+   
 
 
         }
@@ -234,38 +231,49 @@ namespace liw\library;
 
 
          
-        public function updatedb($table,$request)
+        public function updatedb($table,$request,$atribute)
+
          {
                         $getFields=$this->tabFields($table);
                         $Fields=array();
                        // $firstF=$rs1[0]['Field'];
                         for ($i=0; $i<count($getFields); $i++)
                         {
-                        $Fields[]=$getFields[$i]['Field'];
+                            $Fields[]=$getFields[$i]['Field'];
                         }
 
                         foreach ($Fields as $key => $value) {
 
                             if ($value=='updated_at') {
 
-                                $postValue[$value]='updated_at=now()';
-                                
+                                $updValue[$value]='updated_at=now()';     
                             }
 
-                        else{
-
-                            $postValue[$value]=$value."='". $this->filter_input($request[$value]) ."'";
+                            if($request[$value]!=''){
+                                $updValue[$value]=$value."='". $this->filter_input($request[$value]) ."'";
 
                             }
 
                         }
 
+                        $sql=" UPDATE $table SET ".implode(", ", $updValue );
+                        if (isset($atribute['where'])) {
 
-                        $sql=" UPDATE $table SET ".implode(", ", $postValue );
-                        $this->execute($sql);
+                            foreach ($atribute['where'] as $key => $value) {
 
+                             $wherSql[]=$key."="."'".$value."'";
+               
+                            }
 
-         }
+                         $sql.=" WHERE ".implode(" AND ", $wherSql );
+                        
+                         }
+                         
+
+                        return $this->execute($sql);
+                       // return mysqli_affected_rows($this->dbCon); 
+
+            }
 
 
   }

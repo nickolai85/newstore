@@ -1,25 +1,27 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-01-27 19:51:10
+/* Smarty version 3.1.29, created on 2018-01-30 04:47:22
   from "C:\OpenServer\domains\newstore.loc\views\default\leftBoard.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a6cadfe234ad8_71439384',
+  'unifunc' => 'content_5a6fceaaceb521_09366556',
   'file_dependency' => 
   array (
     '5076f80df2762f9509c2e627ce2538c015cee422' => 
     array (
       0 => 'C:\\OpenServer\\domains\\newstore.loc\\views\\default\\leftBoard.tpl',
-      1 => 1517071867,
+      1 => 1517276801,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:user/login.tpl' => 1,
+    'file:user/register.tpl' => 1,
   ),
 ),false)) {
-function content_5a6cadfe234ad8_71439384 ($_smarty_tpl) {
+function content_5a6fceaaceb521_09366556 ($_smarty_tpl) {
 ?>
 
         <div id="leftBoard">
@@ -79,7 +81,7 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
 
                 <?php if (isset($_smarty_tpl->tpl_vars['userData']->value)) {?>
                 <div id="userBox" class="">
-                        <a href="/user/" id="userLink"><?php echo $_smarty_tpl->tpl_vars['userData']->value['name'];?>
+                        <a href="/user" id="userLink"><?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
 </a><br />
                         <a href="#" onClick="logout()">Logout</a><br />
                 </div>
@@ -89,33 +91,24 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_item_0_saved_item;
                         <a href="#" id="userLink"></a><br />
                         <a href="#" onClick="logout()">Logout</a><br />
                 </div>
-
+                <p id="registerResult"  style="background-color: red"></p> 
+               <?php if (!isset($_smarty_tpl->tpl_vars['hideLoginBox']->value)) {?>
                 <div id="loginBox">
-                    <div class="menuCaption">Autorisation</div>
-                        <input type="text" id="lemail" name="lemail" value=""/><br />
-                        <input type="text" id="lpassword" name="lpassword" value=""/><br />
-                        <input type="button" onClick="login();" value="Login">
+                        <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:user/login.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 
                 </div>
                 
                 <div id="registerBox">
-                    <p id="registerResult"  style="background-color: red"></p>  
-                        <form action="/user/register/" method="POST">
 
-                            <div class="menuCaption showHidden" onClick="showRegisterBox();">Registration</div>
+                        
+                         <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:user/register.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
-                                <div id="registerBoxHideen">
-                                        email: <br />
-                                            <input type="text" id="email" name="email" value=""/><br />
-                                        password: <br />
-                                            <input type="password" id="password" name="password" value=""/><br />
-                                        repeat password: <br />
-                                            <input type="password" id="password2" name="password2" value=""/><br />
-                                           <input type="button" onClick="registerNewUser()"  value="register"/>
-                                          <!--  <input type="submit" value="Register">-->
-                                </div>
-                        </form>
+
                 </div>
+                <?php }?>
                 <?php }?>
                                 
                 <div class="menuCaption">Cart</div>

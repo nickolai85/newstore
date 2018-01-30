@@ -12,7 +12,7 @@ use liw\library\DB as DB;
 class CategoryController{
 
 
-    public function indexAction($smarty)
+    public function index($smarty)
     {
 
         $catId = isset($_GET['id'])? $_GET['id'] : null;
@@ -56,12 +56,7 @@ class CategoryController{
     }
 
 
-    public function testAction($smarty)
-    {
 
-        $rs=DB::select(productModel::getProducts());
-
-    }
 
 
 

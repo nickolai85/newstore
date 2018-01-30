@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-01-23 18:59:34
+/* Smarty version 3.1.29, created on 2018-01-29 05:21:31
   from "C:\OpenServer\domains\newstore.loc\views\default\cart\cart.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a675be65fd751_32327654',
+  'unifunc' => 'content_5a6e852b091958_27484186',
   'file_dependency' => 
   array (
     'bac4d373f65c246dcc894886be1653f0eccec3ab' => 
     array (
       0 => 'C:\\OpenServer\\domains\\newstore.loc\\views\\default\\cart\\cart.tpl',
-      1 => 1484856007,
+      1 => 1517192483,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a675be65fd751_32327654 ($_smarty_tpl) {
+function content_5a6e852b091958_27484186 ($_smarty_tpl) {
 ?>
 
 <h1>Cart</h1>
@@ -27,6 +27,7 @@ function content_5a675be65fd751_32327654 ($_smarty_tpl) {
 The cart is empty
 <?php } else { ?>
     <h2>Order Data</h2>
+  <form action="/cart/order/" method="POST">
 <table>
         <tr>
         <td>
@@ -115,6 +116,8 @@ $_smarty_tpl->tpl_vars['item'] = $__foreach_products_0_saved_item;
 }
 ?>
 </table>
+  <input type="submit" value="Place order">
+ </form>
 <?php }
 }
 }

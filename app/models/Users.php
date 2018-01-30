@@ -4,13 +4,7 @@ use liw\library\DB as DB;
 /* 
  * New user registration
  * 
- * 
-email
-pwd
-name
-phone
-adress
-
+ *
  */
 
 
@@ -55,6 +49,15 @@ class Users
     {
         return DB::getBy('users',$statements);  
 
+    }
+
+
+    public static function update($request='')
+    {
+        
+        
+    return DB::update('users',$request,['where'=>['email'=>$_SESSION['user']['email'], 'password'=>$_SESSION['user']['password']]]);
+        
     }
 
 

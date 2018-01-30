@@ -47,10 +47,23 @@ class DB
 		return $a->lastId();
 
 	}
-
-
-
+	public static function update($table,$request,$atribute)
+	{
+		$a=new DBconnect;
 	
+		return $a->updatedb($table,$request,$atribute);
+
+	}
+
+	public static function execute($sql)
+	{
+		$a=new DBconnect;
+	
+		return $a->Execute($sql);
+
+	}
+
+
 	public static function redirect($url)
 	{
 		

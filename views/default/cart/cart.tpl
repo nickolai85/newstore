@@ -4,6 +4,7 @@
 The cart is empty
 {else}
     <h2>Order Data</h2>
+  <form action="/cart/order/" method="POST">
 <table>
         <tr>
         <td>
@@ -53,4 +54,6 @@ The cart is empty
     </tr>
    {/foreach}
 </table>
+  <input type="submit" value="Place order">
+ </form>
 {/if}

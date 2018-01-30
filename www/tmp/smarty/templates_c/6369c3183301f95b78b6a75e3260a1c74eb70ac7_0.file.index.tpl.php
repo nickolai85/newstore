@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-01-27 21:32:15
+/* Smarty version 3.1.29, created on 2018-01-29 04:58:27
   from "C:\OpenServer\domains\newstore.loc\views\default\user\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a6cc5af18cc59_28656585',
+  'unifunc' => 'content_5a6e7fc3aba730_59299698',
   'file_dependency' => 
   array (
     '6369c3183301f95b78b6a75e3260a1c74eb70ac7' => 
     array (
       0 => 'C:\\OpenServer\\domains\\newstore.loc\\views\\default\\user\\index.tpl',
-      1 => 1517077923,
+      1 => 1517191102,
       2 => 'file',
     ),
   ),
@@ -19,11 +19,13 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a6cc5af18cc59_28656585 ($_smarty_tpl) {
+function content_5a6e7fc3aba730_59299698 ($_smarty_tpl) {
 ?>
 
 <h1>User registration data</h1>
 
+<div id="updateUserBox">
+<p id="userRS"></p>
 <table border="0">
 	<tr>
 		<td>
@@ -86,7 +88,6 @@ function content_5a6cc5af18cc59_28656585 ($_smarty_tpl) {
 		</td>
 		<td>
 			<input type="password" id="cuPwd"  value=""/>
-
 		</td>
 	</tr> 
 	<tr>
@@ -99,5 +100,5 @@ function content_5a6cc5af18cc59_28656585 ($_smarty_tpl) {
 		</td>
 	</tr> 
 </table>
-<?php }
+</div><?php }
 }

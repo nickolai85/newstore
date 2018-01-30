@@ -30,7 +30,9 @@ class Loads {
 
 		$Controller= new $controllerName; 
 
-		$function=$Controller->$actionName($smarty);
+		return $Controller->$actionName($smarty);
+
+
 	
 		
 
@@ -42,7 +44,7 @@ class Loads {
 		$smarty->display($templateName . TemplatePostfix);
 	}
 
-		public static function redirect($url)
+	public static function redirect($url)
 	{
 		
 		return	header("Location:".$url , TRUE, 302);

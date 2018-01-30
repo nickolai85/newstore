@@ -9,9 +9,6 @@ use liw\library\DB as DB;
  *  ProductController.php
  *  Controller of users functions, Page ex.(/product/1) 
  */
-
-
-
 /*
 * 
 */
@@ -19,16 +16,16 @@ class UserController
 {
   
 
-    public function indexAction($smarty)
+    public function index($smarty)
     {
 
 
 
-/*      if (!isset($_SESSION['user']) {
+       if (!isset($_SESSION['user'])) {
 
                   Loads::redirect('/'); 
 
-              }*/
+              }
 
         $rsCategories = Categories::categoriesWithChildren();
         $rsProducts =Products::get(['LIMIT'=>10,'ASC'=>'id']);
@@ -44,9 +41,73 @@ class UserController
     }
 
 
-    public function updateAction()
+    public function update()
     {
-      # code...
+
+
+          $request=array();
+
+          if ($_POST['password']!='') {
+              $request['password']= md5($_POST['password']);
+         }
+          if ($_POST['password2']!='') {
+              $request['password2']=md5($_POST['password2']);
+         }
+          if ($_POST['cuPwd']!='') {
+              $request['cuPwd']=md5($_POST['cuPwd']);
+         }
+            $request['phone']   = isset($_POST['phone'])   ? $_POST['phone'] : null;
+            $request['address'] = isset($_POST['address']) ? $_POST['address'] : null;
+            $request['name']    = isset($_POST['name'])    ? $_POST['name'] : null;
+            $request['phone']   = isset($_POST['phone'])   ? $_POST['phone'] : null;
+            $request['email']   = isset($_POST['email'])   ? $_POST['email'] : null;
+
+            $rs=UserMiddleware::checkUpdate($request);
+
+           if (!$rs) {
+
+                    
+                  $updData=Users::update($request);
+
+                     if($updData){
+
+                        $userD=Users::get(['where'=>['id'=>$_SESSION['user']['id']]]);
+                        $resData['message']='Data was succesefull saved';
+                        $resData['success']=1;
+                        $resData['userName']= $userD[0]['name'] ? $userD[0]['name'] : $userD[0]['email'];
+                        $resData['userEmail'] = $userD[0]['email'];
+
+                        $_SESSION['user']['name'] = $userD[0]['name'] ;
+                        $_SESSION['user']['phone'] = $userD[0]['phone'] ;
+                        $_SESSION['user']['email'] = $userD[0]['email'] ;
+                        $_SESSION['user']['address'] = $userD[0]['address'] ;
+                        $_SESSION['user']['password'] = $userD[0]['password'] ;
+                        $_SESSION['userName'] = $userD[0]['name'] ? $userD[0]['name'] : $userD[0]['email'];
+                        $_SESSION['userId']   = $userD[0]['id'];
+
+                        echo json_encode($resData);
+                      }
+                  else{
+
+                        $res['success'] =false;
+                        $res['message'] ='Conection error!';
+                        echo json_encode($res);
+
+                  }
+
+           
+           }
+           else
+           {
+
+             echo json_encode($rs);
+
+           }
+
+
+           
+
+
     }
 
 
@@ -55,7 +116,7 @@ class UserController
 
 
 
-      public function registerAction($value='')
+      public function register($value='')
       {
 
        $rs=UserMiddleware::checkRequest($_POST);
@@ -76,13 +137,12 @@ class UserController
                $resData['success']=1;
               
               // $userData=$userData[0];
-               $resData['userName']=$userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
-               $resData['userEmail'] = $email;
-            
-             //   
-                $_SESSION['user'] = $userData;
-                $_SESSION['userName']= $userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
-                $_SESSION['userId']=$userData[0]['id'];
+              $rs['userName']=$userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
+              $rs['userEmail'] = $email;
+               
+              $_SESSION['user'] = $userData[0];
+              $_SESSION['userName']= $userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
+              $_SESSION['userId']=$userData[0]['id'];
               
           } else {
               $resData['success']=0;
@@ -103,7 +163,7 @@ class UserController
         
       }
 
-      public function logoutAction()
+      public function logout()
       {
           $rs='';
           if (isset($_SESSION['user'])) {
@@ -119,7 +179,7 @@ class UserController
 
 
       }
-      public function loginAction()
+      public function login()
       {
 
          $rs=UserMiddleware::checkLogin($_POST);
@@ -133,14 +193,14 @@ class UserController
 
                $rs['message']='You are successfully logged';
                $rs['success']=1;
-              
         
-              $resData['userName']=$userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
-              $resData['userEmail'] = $email;
-               
+              $rs['name']=$userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
+              $rs['email'] = $email;
+              $rs['address'] = $userData[0]['address'] ? $userData[0]['address'] : null;
+              $rs['phone'] = $userData[0]['phone'] ? $userData[0]['phone'] : null;
               $_SESSION['user'] = $userData[0];
               $_SESSION['userName']= $userData[0]['name'] ? $userData[0]['name'] : $userData[0]['email'];
-              $_SESSION['userId']=$userData[0]['id'];
+       
               
               echo json_encode($rs);
 

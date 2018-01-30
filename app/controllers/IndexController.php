@@ -5,10 +5,10 @@ use liw\library\DB as DB;
 class IndexController{
 
 
-	public function indexAction($smarty)
+	public function index($smarty)
 	{
 		$rsCategories = Categories::categoriesWithChildren();
-        $rsProducts =Products::get(['LIMIT'=>10,'ASC'=>'id']);
+        $rsProducts =Products::get(['limit'=>10,'asc'=>'id']);
   
         $smarty->assign('pageTitle', 'Main page');
 	 	$smarty->assign('rsCategories', $rsCategories);
@@ -21,12 +21,6 @@ class IndexController{
 	}
 
 
-	public function testAction($smarty)
-	{
-
-		$rs=DB::select(productModel::getProducts());
-
-	}
 
 
 

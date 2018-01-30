@@ -11,7 +11,7 @@ use liw\library\DB as DB;
 class ProductController{
 
 
-    public function indexAction($smarty)
+    public function index($smarty)
     {
 
         $id = isset($_GET['id'])? $_GET['id'] : null;
@@ -37,13 +37,7 @@ class ProductController{
     }
 
 
-    public function testAction($smarty)
-    {
 
-        $rs=DB::select(productModel::getProducts());
-    
-
-    }
 
 
 

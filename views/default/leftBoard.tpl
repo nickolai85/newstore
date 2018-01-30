@@ -18,7 +18,7 @@
 
                 {if isset($userData)}
                 <div id="userBox" class="">
-                        <a href="/user/" id="userLink">{$userData['name']}</a><br />
+                        <a href="/user" id="userLink">{$userName}</a><br />
                         <a href="#" onClick="logout()">Logout</a><br />
                 </div>
                 {else}
@@ -27,33 +27,20 @@
                         <a href="#" id="userLink"></a><br />
                         <a href="#" onClick="logout()">Logout</a><br />
                 </div>
-
+                <p id="registerResult"  style="background-color: red"></p> 
+               {if  ! isset($hideLoginBox)}
                 <div id="loginBox">
-                    <div class="menuCaption">Autorisation</div>
-                        <input type="text" id="lemail" name="lemail" value=""/><br />
-                        <input type="text" id="lpassword" name="lpassword" value=""/><br />
-                        <input type="button" onClick="login();" value="Login">
+                        {include file='user/login.tpl'}
 
                 </div>
                 
                 <div id="registerBox">
-                    <p id="registerResult"  style="background-color: red"></p>  
-                        <form action="/user/register/" method="POST">
 
-                            <div class="menuCaption showHidden" onClick="showRegisterBox();">Registration</div>
+                        
+                         {include file='user/register.tpl'}
 
-                                <div id="registerBoxHideen">
-                                        email: <br />
-                                            <input type="text" id="email" name="email" value=""/><br />
-                                        password: <br />
-                                            <input type="password" id="password" name="password" value=""/><br />
-                                        repeat password: <br />
-                                            <input type="password" id="password2" name="password2" value=""/><br />
-                                           <input type="button" onClick="registerNewUser()"  value="register"/>
-                                          <!--  <input type="submit" value="Register">-->
-                                </div>
-                        </form>
                 </div>
+                {/if}
                 {/if}
                                 
                 <div class="menuCaption">Cart</div>
