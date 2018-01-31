@@ -72,7 +72,12 @@ class DB
 
 	}
 
-
+	public static function join($sql, $atribute)
+	{
+		$a=new DBconnect;
+		
+		return $a->selectJoin($sql, $atribute);
+	}
 
 }
 

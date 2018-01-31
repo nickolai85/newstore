@@ -73,4 +73,102 @@
 		</td>
 	</tr> 
 </table>
+
+<h2>Orders</h2>
+{if ! $usrOrders}
+ No orders
+{else}
+
+<table width="100%">
+	<tr>
+		<th>
+			Nr
+		</th>
+		<th>
+			Action
+		</th>
+		<th>
+			Order ID
+		</th>	
+		<th>
+			Status
+		</th>
+		<th>
+			Creation Data
+		</th>
+		<th>
+			Payment Data
+		</th>	
+		<th>
+			Additional Information
+		</th>
+
+	</tr>
+	{foreach $usrOrders as $item name=orders}
+	<tr>
+		<td>
+			{$smarty.foreach.orders.iteration}
+		</td>
+		<td>
+			<a href="#" onClick="showProducts('{$item['id']}'); return false;">Show items</a>
+		</td>
+		<td>
+			{$item['id']}
+		</td>
+		<td>
+			{$item['status']}
+		</td>
+		<td>
+			{$item['created_at']}
+		</td>
+		<td>
+			{$item['paid_at']}
+		</td>
+		<td>
+			{$item['comment']}
+		</td>
+	</tr>
+	<tr class="hideme" id="orderedItems_{$item['id']}">
+			<td colspan="7">
+			{if $item['children']}
+				<table border="1" cellpadding="1" cellspacing="1" width="100%">
+					<tr>
+						<th>
+							Nr
+						</th>
+						<th>
+							ID
+						</th>
+						<th>
+							Name
+						</th>
+						<th>
+							Price
+						</th>
+						<th>
+							Quantity
+						</th>
+						<th>
+							Total Price
+						</th>
+					</tr>
+					{foreach $item['children'] as $child name=products }
+					<tr>
+						<td>{$smarty.foreach.products.iteration}</td>
+						<td>{$child['id']}</td>
+						<td><a href="/product/{$child['id']}/">{$child['name']}</a></td>
+						<td>{$child['price']}</td>
+						<td>{$child['amount']}</td>
+						<td>{$child['amount']}</td>
+					</tr>
+					{/foreach}
+				</table>
+			{/if}
+			</td>		
+
+	</tr>
+
+	{/foreach}
+</table>
+{/if}
 </div>

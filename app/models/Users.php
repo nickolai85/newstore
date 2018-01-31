@@ -1,5 +1,6 @@
 <?php
 namespace liw\app\models;
+use liw\app\models\Orders as Orders;
 use liw\library\DB as DB; 
 /* 
  * New user registration
@@ -60,7 +61,18 @@ class Users
         
     }
 
-
+    /*
+    * Get data of current users
+    *
+    *@return array of orders linked to users
+    */
+    public static function Orders()
+    {
+        $user_Id= isset($_SESSION['user']['id']) ? $_SESSION['user']['id']: 0;
+        $userId= intval($user_Id );
+        $rs=Orders::purchaseProducts($userId);
+        return $rs;
+    }
 
 
 }

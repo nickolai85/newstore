@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-01-30 04:47:22
+/* Smarty version 3.1.29, created on 2018-01-31 17:32:34
   from "C:\OpenServer\domains\newstore.loc\views\default\leftBoard.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a6fceaaceb521_09366556',
+  'unifunc' => 'content_5a71d382308d49_11751063',
   'file_dependency' => 
   array (
     '5076f80df2762f9509c2e627ce2538c015cee422' => 
     array (
       0 => 'C:\\OpenServer\\domains\\newstore.loc\\views\\default\\leftBoard.tpl',
-      1 => 1517276801,
+      1 => 1517408683,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:user/register.tpl' => 1,
   ),
 ),false)) {
-function content_5a6fceaaceb521_09366556 ($_smarty_tpl) {
+function content_5a71d382308d49_11751063 ($_smarty_tpl) {
 ?>
 
         <div id="leftBoard">

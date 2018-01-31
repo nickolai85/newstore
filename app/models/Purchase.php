@@ -30,7 +30,7 @@ class Purchase
 
     		 (order_id, product_id, price , amount, created_at)
 
-    		 VALUES";
+    		 VALUES"; 
 
         $values=array();
         //creating array of rows for query for eqach product
@@ -44,6 +44,17 @@ class Purchase
 		$rs=DB::execute($sql);
 		return $rs;
 
+    }
+
+
+    public static function products ($orderId)
+    {
+       
+       $sql = "SELECT `pe`.*, `ps`.name 
+                FROM purchase as `pe`
+                JOIN products as `ps` ON `pe`.product_id=`ps`.id";
+
+                return DB::join($sql, ['where'=>['pe.order_id'=>$orderId]]);
     }
 
 }

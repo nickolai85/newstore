@@ -10,15 +10,18 @@ define ('PathPostfix','Controller.php');
 
 //used template
 $template='default';
+$templateAdmin='admin';
 
 //Templates files  path (#.tpl)
 
 define ('TemplatePrefix','../views/'.$template.'/');
+define ('TemplateAdminPrefix','../views/'.$templateAdmin.'/');
 define ('TemplatePostfix','.tpl');
 
 //Website Templates files  path
 
 define ('TemplateWebPath','../templates/'.$template.'/');
+define ('TemplateAdminWebPath','../templates/'.$templateAdmin.'/');
 //Initialisation of smarty template
 //full path to Smarty.class.php
 //require_once('../library/DBconnect.php');

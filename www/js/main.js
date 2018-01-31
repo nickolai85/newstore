@@ -301,5 +301,24 @@ function updateUserData(){
         
 
     })
-    
+
+
+
+
     } 
+
+        /*
+        * Show/hide  order data
+        *
+        */
+        function showProducts(id) {
+        
+              console.log(id);
+              var objName ="#orderedItems_"+id;
+              if ($(objName).css('display') !='table-row') {
+                  $(objName).show();
+              } else {
+
+                $(objName).hide();
+              }
+        }

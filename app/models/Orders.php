@@ -57,5 +57,33 @@ class Orders
 
     }
 
+
+
+    public static function purchaseProducts($userId)
+    {
+        $sql=self::get(['where'=>['user_id'=>$userId],'desc'=>'id']);
+
+        $rs=array();
+        for ($i=0; $i <count($sql) ; $i++) { 
+            
+                $rs[]=$sql[$i];
+                $childs=Purchase::products($sql[$i]['id']); 
+
+                if ($childs) {
+                          
+
+                          $rs[$i]['children']=$childs;
+                      }      
+
+
+
+        }
+
+        return $rs;
+    }
+
+
+
+
 }
 

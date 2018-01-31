@@ -37,11 +37,6 @@ class Categories
 				    			$rs[$i]['children']=$childs;
 				    			}    			
 
-
-
-
-
-
     			}	
    
 

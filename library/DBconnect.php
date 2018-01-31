@@ -79,6 +79,85 @@ namespace liw\library;
 
 
 
+        public function recFilters($query, $atribute='')
+        {
+            $sql=$query;
+
+            if (isset($atribute['whereIn'])) {
+
+                $field=key($atribute['whereIn']);
+
+
+                $newArray=$atribute['whereIn'][$field];
+
+                 foreach ($newArray as $key => $value) {
+
+
+                $wherSql[]=$value;
+               
+            }
+
+            $sql.=" WHERE $field IN (".implode(" , ", $wherSql ).")";
+
+            }
+
+            
+
+            if (isset($atribute['where'])) {
+
+                 foreach ($atribute['where'] as $key => $value) {
+
+                    $wherSql[]=$key."="."'".$value."'";
+               
+            }
+
+            $sql.=" WHERE ".implode(" AND ", $wherSql );
+            }
+
+            if (isset($atribute['asc'])) {
+
+
+                $sql.=" ORDER BY ".$atribute['asc']." ASC";
+            }
+
+            if (isset($atribute['desc'])) {
+
+
+                $sql.=" ORDER BY ".$atribute['desc']." DESC";
+            }
+
+            if (isset($atribute['group'])) {
+
+                $sql.=" GROUP BY ".$atribute['group'];
+
+            }
+
+
+            if (isset($atribute['limit'])) {
+
+                $sql.=" LIMIT ".$atribute['limit'];
+
+            }
+
+    
+            return $this->selectDb($sql);
+
+        }
+
+
+        public function selectJoin($query, $atribute='')
+        {
+
+
+            
+              return  $sql=$this->recFilters($query, $atribute);
+               
+                
+
+        }
+
+
+
 
         public function selectBy($table, $atribute='')
         {
@@ -159,8 +238,7 @@ namespace liw\library;
                 $sql.=" LIMIT ".$atribute['limit'];
 
             }
-
-
+            
             return $this->selectDb($sql);
            
 

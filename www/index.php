@@ -30,6 +30,7 @@ if(! isset($_SESSION['cart'])){
 		$smarty->assign('userName', $_SESSION['userName']);
 
 	}
+	
 //Define template variable of number of items in the cart
 	$smarty->assign('cartCntItems',count($_SESSION['cart']));
 	

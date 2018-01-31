@@ -2,6 +2,7 @@
 use liw\app\models\Categories as Categories;
 use liw\app\models\Products as Products; 
 use liw\app\models\Users as Users;
+use liw\app\models\Orders as Orders;
 use liw\app\middleware\UserMiddleware as UserMiddleware;
 use liw\library\DB as DB;
 
@@ -14,7 +15,12 @@ use liw\library\DB as DB;
 */
 class UserController 
 {
-  
+  /*
+  *Create  maing Users page
+  *
+  *@link /user/
+  *@param object $smarty template
+  */
 
     public function index($smarty)
     {
@@ -25,12 +31,17 @@ class UserController
 
                   Loads::redirect('/'); 
 
-              }
+        }
 
         $rsCategories = Categories::categoriesWithChildren();
         $rsProducts =Products::get(['LIMIT'=>10,'ASC'=>'id']);
-  
+
+        //Get list of users orders
+        $usrOrders=Users::Orders();
+        print_r(expression)
+
         $smarty->assign('pageTitle', 'User page');
+        $smarty->assign('usrOrders', $usrOrders);
         $smarty->assign('rsCategories', $rsCategories);
         $smarty->assign('rsProducts', $rsProducts);
         
